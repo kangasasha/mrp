@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<!-- !!! Fixed in Phonegap version/s: 3.1.0 !!! -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.css">
+		<link rel="stylesheet" href="css/themes/nhls2.min.css">
+		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		
+		<script src="jq/lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jqm.config.js"></script>
+		<script src="jq/lib/jquery.mobile-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+		
+		<title>Lab Results Portal</title>
+    </head>
+
+    <body>
+
+		<div data-role="page" data-title="NHLS Lab Results" id="home"  data-theme="a">
+			<img src="img/header.png" width="100%" alt="">
+			<div class="ui-content" role="main">	
+				<a id='buttondefault' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview</a>
+				<a id='buttonlogon' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview Logon</a>
+				<a class="ui-btn ui-corner-all" data-transition="flip" href="http://www.nhls.ac.za/">Our web site</a>
+				<a class="ui-btn ui-corner-all" data-transition="flip" href="http://www.labtestsonline.org.au/">Lab Tests Online AU</a>
+			</div><!-- /content -->
+			<div data-role="footer" data-id="footer" data-position="fixed" >	
+				<div data-role="navbar" data-iconpos="bottom">
+					<ul>
+						<li><a data-icon="home" class="ui-btn-active" href="#">Home</a></li>
+						<li><a data-icon="info" data-transition="flip" href="#info">Info</a></li>
+						<li><a data-icon="gear" data-transition="flip" href="#settings">Settings</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div><!-- /page one -->
+
+		<div data-role="page" id="info">
+			<div data-role="header" data-position="fixed">
+				<h1>NHLS Lab Results</h1>
+			</div><!-- /header -->
+			<div class="ui-content" role="main">
+
+				<ul id="appVersion" data-role="listview" data-inset="true">
+				</ul>
+
+				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+					<h4>Device properties</h4>
+					<ul id="deviceProperties" data-role="listview" data-inset="true">
+					</ul>
+				</div><!-- /collapsible -->
+				
+				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+					<h4>Terms and Conditions</h4>
+					<a id="buttontandc" class="ui-btn ui-corner-all" data-transition="flip" href="#">Terms and Conditions</a>
+					<div class="ui-checkbox">
+					    <label for="checkboxtandc" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">I agree to the termas and conditions above.</label>
+					    <input name="checkboxtandc" id="checkboxtandc" data-enhanced="true" type="checkbox">
+					</div>
+				</div>
+			</div><!-- /content --> 
+			
+			<div data-role="footer" data-id="footer" data-position="fixed" >
+				<div data-role="navbar" data-iconpos="bottom">
+					<ul>
+						<li><a data-transition="slide" data-icon="home" href="#home">Home</a></li>
+						<li><a data-icon="info" href="#" class="ui-btn-active">Info</a></li>
+						<li><a data-transition="flip" data-icon="gear" href="#settings">Settings</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div><!-- /page info -->
+
+		<div data-role="page" id="settings">
+			<div data-role="header" data-position="fixed">
+				<h1>NHLS Lab Results</h1>
+			</div><!-- /header -->
+			<div class="ui-content" role="main">
+				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+					<h4>Register</h4>
+					<form enctype="text/plain" action="">
+    					<!--form -->       
+						<div style="padding:10px 20px;">
+							<label for="title" class="ui-hidden-accessible">Title</label>
+							<select name="title" id="title">
+								<option value="Dr">Dr</option>
+								<option value="Miss">Miss</option>
+								<option value="Mr">Mr</option>
+								<option value="Mrs">Mrs</option>
+								<option value="Ms">Ms</option>
+								<option value="Prof.">Prof.</option>
+								<option value="Sr">Sr</option>
+							</select>
+							<label for="firstname" class="ui-hidden-accessible">First name:</label>
+							<input type="text" name="firstname" id="firstname" value="" placeholder="firstname" data-theme="a">
+							<label for="surname" class="ui-hidden-accessible">Surname:</label>
+							<input type="text" name="surname" id="surname" value="" placeholder="surname" data-theme="a">
+							<label for="gender" class="ui-hidden-accessible">Gender</label>
+							<select name="gender" id="gender">
+								<option value="female">female</option>
+								<option value="male">male</option>
+							</select>
+							<label for="mobile" class="ui-hidden-accessible">Mobile:</label>
+							<input type="tel" name="mobile" id="mobile" value="" placeholder="mobile" data-theme="a">
+							<label for="gender" class="ui-hidden-accessible">Gender</label>
+							<label for="email" class="ui-hidden-accessible">Email:</label>
+							<input type="email" name="email" id="email" value="" placeholder="email" data-theme="a">
+							<button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left">Register</button>
+						</div>
+					</form>
+				</div><!-- /collapsible -->
+		
+				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+					<h4>My details</h4>
+					<div class="ui-field-contain">
+						<label for="username" >Username:</label>
+						<input type="text" name="username" id="username" value="" placeholder="username" data-theme="a">
+					</div>
+				</div><!-- /collapsible -->
+			</div><!-- /content -->
+			<div data-role="footer" data-id="footer" data-position="fixed" >	
+				<div data-role="navbar" data-iconpos="bottom">
+					<ul>
+						<li><a data-transition="slide" data-icon="home" href="#home">home</a></li>
+						<li><a data-transition="slide" data-icon="info" href="#info">Info</a></li>
+						<li><a data-icon="gear" href="#" class="ui-btn-active" >Settings</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div><!-- /page settings -->
+
+
+		<!-- Phonegap stuff -->
+		<!-- During testing with "phonegap serve" and Safari on IOS (Chrome on IOS handles this better and works), 
+			 the phonegap.js reference here without a physical file in place, causes an "Cannot Open Page" error dialog
+			 with the following description "Safari cannot open the page because the address is invalid." and also
+			 causes the wrv logon link to fail silently - weird! -->
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+		<!-- MRP stuff -->
+		<script src="js/mrp.script.js"></script>
+
+		
+    </body>
+</html>

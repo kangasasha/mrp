@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.ui-page
+{
+background:url('../img/watermark768x1024.png') no-repeat center;
+-webkit-background-size:cover;  
+-moz-background-size:cover;  
+-o-background-size:cover;  
+background-size:cover;  
+}
+
+
