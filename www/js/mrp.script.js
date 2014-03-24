@@ -2,8 +2,9 @@
 Version	Date			Description
 0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
 */
+//TODO: Complete config design and implementation
 var config=new Object();
-config.version="0.4.1"
+config.version="0.4.2"
 config.url="https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
 config.urldefault=url+"default.htm";
 
@@ -19,9 +20,7 @@ function buildLogonURI() {
 	//Init the logon button href
 	var username=$('#username').val();
 	//TODO: validate username 
-	//alert(url);
-	//alert(urllogonwun+'\n'+username);
-	uri=encodeURI(urllogonwun+username);
+	var uri=encodeURI(urllogonwun+username);
 	
 	return uri;
 }
@@ -34,27 +33,25 @@ function initFromStorage(){
 
 			var accepted=JSON.parse(localStorage.getItem('settings')).tandcaccepted;
 			$('#checkboxtandc').prop('checked',accepted);
-			//alert($('#checkboxtandc').checked);
 	    }
 	}
 }
 
 function buildAppVersion(){
 	var html = "";
-	  html = html + "<li>" + 'Version: ' + config.version + "</li>";
-	  $("#appVersion").html(html);
+	html+="<li>"+"Version: "+config.version+"</li>";
+	$("#appVersion").html(html);
 }
 
 function buildDeviceProperties(){
 	var html = "";
+	alert(window.device);
 	if (window.device) {
-		alert("buildDeviceProperties device object available!");
   	  	html = html + "<li>" + 'Device Name: ' + device.name + "</li>";
   	  	html = html + "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
   	  	html = html + "<li>" + 'Device Platform: ' + device.platform + "</li>";
   	  	html = html + "<li>" + 'Device UUID: ' + device.uuid + "</li>";
 	}else{
-		//alert("buildDeviceProperties device object NOT available!");
   	  	html = html + "<li>Device properties not available.</li>";
 	}
 	$("#deviceProperties").html(html);
@@ -90,14 +87,14 @@ $(document).ready(function() {
 	initFromStorage();
 	
 	//Init the default button href
-	uri=encodeURI(urldefault);
+	var uri=encodeURI(urldefault);
 	$('#buttondefault').prop('href',uri);
 
-	uri=encodeURI("https://trakcarelabwebview.nhls.ac.za/trakcarelab/WWW NHLS Terms and conditions Ver 1 0.htm");
+	var uri=encodeURI("https://trakcarelabwebview.nhls.ac.za/trakcarelab/WWW NHLS Terms and conditions Ver 1 0.htm");
 	$('#buttontandc').prop('href',uri);
 
 	//Init the logon button href
-	uri=buildLogonURI();
+	var uri=buildLogonURI();
 	$('#buttonlogon').prop('href',uri);
 	
 	//$('#buttonlogon').click(function(event) {
@@ -105,10 +102,7 @@ $(document).ready(function() {
 	 	// Prevent the usual navigation behavior
 		event.preventDefault();
 	  	
-		//alert(event);
- 
-		uri=buildLogonURI();
-		//alert(uri);
+		var uri=buildLogonURI();
 		window.open(uri,'_self');
 	});
 
@@ -119,12 +113,9 @@ $(document).ready(function() {
 	 	// Prevent the usual navigation behavior
 		event.preventDefault();
 
-		username=$('#username').val();
-		
+		var username=$('#username').val();
 		// Store an object using JSON
 		localStorage.setItem('settings', JSON.stringify({username: username}));
-		//alert(JSON.parse(localStorage.getItem('settings')).username); // value
-		
 	});
 
 	//$('#checkboxtandc').on( "change", 'input[type=checkbox]', function( event ) {
@@ -133,10 +124,8 @@ $(document).ready(function() {
 		event.preventDefault();
 		
 		var accepted=this.checked;
-		
 		// Store an object using JSON
 		localStorage.setItem('settings', JSON.stringify({tandcaccepted: accepted}));
-		//alert(JSON.parse(localStorage.getItem('settings')).tandcaccepted); // value
 	});
 
 	$('#formRegistration').submit(function( event ) {

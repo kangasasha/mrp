@@ -4,8 +4,9 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "za.co.iscpoc.mrp"
-        version   = "0.4.0"
-		versionCode="0.4.0">
+        version   = "0.4.2"
+		versionCode="4"
+		versionName="0.4.2">
 
     <name>Mobile Results Portal</name>
 
