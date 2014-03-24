@@ -45,7 +45,7 @@ function buildAppVersion(){
 
 function buildDeviceProperties(){
 	var html = "";
-	alert(window.device);
+	//alert(window.device);
 	if (window.device) {
   	  	html = html + "<li>" + 'Device Name: ' + device.name + "</li>";
   	  	html = html + "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
