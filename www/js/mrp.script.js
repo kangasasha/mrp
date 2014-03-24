@@ -56,48 +56,28 @@ function buildDeviceProperties(){
 	$("#deviceProperties").html(html);
 }
 
-function sendMail(){
-	//TODO --------
-	//"mailto:support@iscpoc.co.za?subject=NHLS%20TrakCare%20Lab%20Webview%20User%20Registration&body=First name:%0D%0ALast name:">
-	
+function sendEmail(){
 	var subject="NHLS TrakCare Lab Webview User Registration";
 	var title=$("#title").val();
-	var firstName=$("#firstname").val();	
+	var firstname=$("#firstname").val();	
 	var surname=$("#surname").val();	
-	var mobile=$("#mobile").val();	
 	var gender=$("#gender").val();	
+	var mobile=$("#mobile").val();	
 	var email=$("#email").val();	
-	var natId=$("#natid").val();	
+	//var natId=$("#natid").val();	
 	
-	//var uri=urlemailto+"mailto:support@iscpoc.co.za?subject=NHLS%20TrakCare%20Lab%20Webview%20User%20Registration&body=First name:%0D%0ALast name:">
-    /*
-				<div style="padding:10px 20px;">
-					<label for="title" class="ui-hidden-accessible">Title</label>
-						<select name="title" id="title">
-							<option value="Dr">Dr</option>
-							<option value="Miss">Miss</option>
-							<option value="Mr">Mr</option>
-							<option value="Mrs">Mrs</option>
-							<option value="Ms">Ms</option>
-							<option value="Prof.">Prof.</option>
-							<option value="Sr">Sr</option>
-					</select>
-               		<label for="fn" class="ui-hidden-accessible">First name:</label>
-            		<input type="text" name="fn" id="fn" value="" placeholder="firstname" data-theme="a">
-               		<label for="sn" class="ui-hidden-accessible">Surname:</label>
-            		<input type="text" name="sn" id="sn" value="" placeholder="surname" data-theme="a">
-            		<label for="mobile" class="ui-hidden-accessible">Mobile:</label>
-            		<input type="tel" name="mobile" id="mobile" value="" placeholder="mobile" data-theme="a">
-					<label for="gender" class="ui-hidden-accessible">Gender</label>
-               		<label for="email" class="ui-hidden-accessible">Email:</label>
-            		<input type="email" name="email" id="email" value="" placeholder="email" data-theme="a">
-					<label for="gender" class="ui-hidden-accessible">Gender</label>
-					<select name="gender" id="gender">
-						<option value="female">female</option>
-						<option value="male">male</option>
-					</select>
-            		<b
-	*/
+	var body="Title:"+title+"\r\n";
+	body+="First name:"+firstname+"\r\n";
+	body+="Surname:"+surname+"\r\n";
+	body+="Gender:"+gender+"\r\n";
+	body+="Mobile:"+mobile+"\r\n";
+	body+="Email:"+email+"\r\n";
+
+    var uri="mailto:support@iscpoc.co.za";
+	uri+="?subject="+encodeURIComponent(subject);
+	uri+="&body="+encodeURIComponent(body);
+	
+	window.location.href=uri;
 }
 				
 $(document).ready(function() {
@@ -155,6 +135,10 @@ $(document).ready(function() {
 		//alert(JSON.parse(localStorage.getItem('settings')).tandcaccepted); // value
 	});
 
+	$('#formRegistration').submit(function( event ) {
+	    event.preventDefault();
+		sendEmail();
+    });
 
 });
 
