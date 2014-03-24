@@ -1,5 +1,9 @@
+/* Change history
+Version	Date			Description
+0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
+*/
 var config=new Object();
-config.version="0.4"
+config.version="0.4.1"
 config.url="https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
 config.urldefault=url+"default.htm";
 
