@@ -1,138 +1,131 @@
 /* Change history
-Version	Date			Description
-0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
+Version Date            Description
+0.4.1   24 Mar 2014     Corrected spelling in T&Cs link description.
+0.5.0   26 Mar 2014     Major change to mrp.script.js
 */
-//TODO: Complete config design and implementation
-var config=new Object();
-config.version="0.4.2"
-config.url="https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
-config.urldefault=url+"default.htm";
+var app = {
 
-var url="https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
-var urldefault=url+"default.htm";
-var urllogon=url+"csp/logon.csp?LANGID=1";
-var urllogonwun=urllogon+"&USERNAME=";
-//var urllogonwunpwd=urllogonwun+'&PASSWORD=';
-//var urllogonwunpwd=url+'csp/logon.csp?USERNAME=demo&PASSWORD=demo&LANGID=1&DEPARTMENT=AUSTINED';
-var urlemailto="mailto:support@iscpoc.co.za";
+    showAlert: function (message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
+    },
 
-function buildLogonURI() {
-	//Init the logon button href
-	var username=$('#username').val();
-	//TODO: validate username 
-	var uri=encodeURI(urllogonwun+username);
-	
-	return uri;
-}
+    initFromStorage: function () {
+        if (window.localStorage) {
+	        if (localStorage.length) {
+			    var username=JSON.parse(localStorage.getItem('settings')).username;
+			    $('#textUsername').val(username);
 
-function initFromStorage(){
-	if (window.localStorage) {
-	    if (localStorage.length) {
-			var username=JSON.parse(localStorage.getItem('settings')).username;
-			$('#username').val(username);
-
-			var accepted=JSON.parse(localStorage.getItem('settings')).tandcaccepted;
-			$('#checkboxtandc').prop('checked',accepted);
+			    var accepted=JSON.parse(localStorage.getItem('settings')).tandcaccepted;
+			    $('#checkboxTandC').prop('checked',accepted);
+	        }
 	    }
-	}
-}
+    },
 
-function buildAppVersion(){
-	var html = "";
-	html+="<li>"+"Version: "+config.version+"</li>";
-	$("#appVersion").html(html);
-}
+	buildLogonURI: function () {
+        //TODO: validate username 
+        var username = $('#textUsername').val(),
+            uri = this.urlLogonwUN + username;
+        return uri;
+    },
 
-function buildDeviceProperties(){
-	var html = "";
-	//alert(window.device);
-	if (window.device) {
-  	  	html = html + "<li>" + 'Device Name: ' + device.name + "</li>";
-  	  	html = html + "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
-  	  	html = html + "<li>" + 'Device Platform: ' + device.platform + "</li>";
-  	  	html = html + "<li>" + 'Device UUID: ' + device.uuid + "</li>";
-	}else{
-  	  	html = html + "<li>Device properties not available.</li>";
-	}
-	$("#deviceProperties").html(html);
-}
+    buildAppVersion: function () {
+	    var html = "<li>" + "Version: " + this.version + "</li>";
+	    $("#ulAppVersion").html(html);
+    },
 
-function sendEmail(){
-	var subject="NHLS TrakCare Lab Webview User Registration";
-	var title=$("#title").val();
-	var firstname=$("#firstname").val();	
-	var surname=$("#surname").val();	
-	var gender=$("#gender").val();	
-	var mobile=$("#mobile").val();	
-	var email=$("#email").val();	
-	//var natId=$("#natid").val();	
-	
-	var body="Title:"+title+"\r\n";
-	body+="First name:"+firstname+"\r\n";
-	body+="Surname:"+surname+"\r\n";
-	body+="Gender:"+gender+"\r\n";
-	body+="Mobile:"+mobile+"\r\n";
-	body+="Email:"+email+"\r\n";
+    buildDeviceProperties: function () {
+	    var html = "";
+	    //alert(window.device);
+	    if (window.device) {
+  	  	    html += "<li>" + 'Device Name: ' + device.name + "</li>";
+  	  	    html += "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
+  	  	    html += "<li>" + 'Device Platform: ' + device.platform + "</li>";
+  	  	    html += "<li>" + 'Device UUID: ' + device.uuid + "</li>";
+	    } else {
+  	  	    html += "<li>Device properties not available.</li>";
+	    }
+	    $("#deviceProperties").html(html);
+    },
 
-    var uri="mailto:support@iscpoc.co.za";
-	uri+="?subject="+encodeURIComponent(subject);
-	uri+="&body="+encodeURIComponent(body);
-	
-	window.location.href=uri;
-}
-				
-$(document).ready(function() {
-	// Stuff to do as soon as the DOM is ready;
-	//alert("Pre initFromStorage");
-	initFromStorage();
-	
-	//Init the default button href
-	var uri=encodeURI(urldefault);
-	$('#buttondefault').prop('href',uri);
-
-	var uri=encodeURI("https://trakcarelabwebview.nhls.ac.za/trakcarelab/WWW NHLS Terms and conditions Ver 1 0.htm");
-	$('#buttontandc').prop('href',uri);
-
-	//Init the logon button href
-	var uri=buildLogonURI();
-	$('#buttonlogon').prop('href',uri);
-	
-	//$('#buttonlogon').click(function(event) {
-	$('#buttonlogon').on( "click", function( event ) {
-	 	// Prevent the usual navigation behavior
-		event.preventDefault();
-	  	
-		var uri=buildLogonURI();
-		window.open(uri,'_self');
-	});
-
-	buildAppVersion();
-	buildDeviceProperties();
-
-	$('#username').on( "change", function( event ) {
-	 	// Prevent the usual navigation behavior
-		event.preventDefault();
-
-		var username=$('#username').val();
-		// Store an object using JSON
-		localStorage.setItem('settings', JSON.stringify({username: username}));
-	});
-
-	//$('#checkboxtandc').on( "change", 'input[type=checkbox]', function( event ) {
-	$('#checkboxtandc').on( "change", function( event ) {
-	  	// Prevent the usual navigation behavior
-		event.preventDefault();
+    registerEvents: function() {
+		var appThis = this;
 		
-		var accepted=this.checked;
-		// Store an object using JSON
-		localStorage.setItem('settings', JSON.stringify({tandcaccepted: accepted}));
-	});
+		$('#buttonLogon').on( "click", function( event ) {
+			event.preventDefault();
+			window.open(encodeURI(appThis.buildLogonURI()),'_self');
+		});
 
-	$('#formRegistration').submit(function( event ) {
-	    event.preventDefault();
-		sendEmail();
-    });
+		$('#textUsername').on( "change", function( event ) {
+			event.preventDefault();
+			var username=$('#textUsername').val();
+			localStorage.setItem('settings', JSON.stringify({username: username}));
+		});
 
-});
+		$('#checkboxTandC').on( "change", function( event ) {
+			event.preventDefault();
+			var accepted=this.checked;
+			localStorage.setItem('settings', JSON.stringify({tandcaccepted: accepted}));
+		});
+
+		$('#formRegistration').submit(function( event ) {
+			event.preventDefault();
+			appThis.sendEmail();
+		});
+		
+		FastClick.attach(document.body);
+    },
+
+    sendEmail: function () {
+	    var subject = "NHLS TrakCare Lab Webview User Registration";
+	    var title = $("#optionTitle").val();
+	    var firstname = $("#textFirstname").val();	
+	    var surname = $("#textSurname").val();	
+	    var gender = $("#optionGender").val();	
+	    var mobile = $("#telMobile").val();	
+	    var email = $("#emailEmail").val();	
+	    //var natId=$("#natid").val();	
+	
+	    var body = "Title:" + title + "\r\n";
+	    body += "First name:" + firstname + "\r\n";
+	    body += "Surname:" + surname + "\r\n";
+        body += "Gender:" + gender + "\r\n";
+        body += "Mobile:" + mobile + "\r\n";
+        body += "Email:" + email + "\r\n";
+
+        var uri = this.urlMailTo;
+	    uri += "?subject=" + encodeURIComponent(subject);
+	    uri += "&body=" + encodeURIComponent(body);
+	
+	    window.location.href = uri;
+    },
+				
+	initialize: function() {
+		//var self = this;
+  		this.initFromStorage();
+
+		this.version = "0.5.0",
+		this.urlWRV = "https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
+		this.urlDefault = this.urlWRV + "default.htm";
+		this.urlLogon = this.urlWRV + "csp/logon.csp?LANGID=1";
+		this.urlLogonwUN = this.urlLogon + "&USERNAME=";
+		this.urlMailTo = "mailto:support@iscpoc.co.za";
+		this.urlTandC = "https://trakcarelabwebview.nhls.ac.za/trakcarelab/WWW NHLS Terms and conditions Ver 1 0.htm";
+
+		$('#buttonDefault').prop('href',encodeURI(this.urlDefault));
+		$('#buttonLogon').prop('href',encodeURI(this.buildLogonURI()));
+		$('#buttonTandC').prop('href',encodeURI(this.urlTandC));
+	
+		this.buildAppVersion();
+		this.buildDeviceProperties();
+
+        this.registerEvents();
+	}
 
 
+};
+
+app.initialize();

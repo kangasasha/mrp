@@ -36,10 +36,6 @@ Version	Date			Description
 		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		
-		<script src="jq/lib/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jqm.config.js"></script>
-		<script src="jq/lib/jquery.mobile-1.4.2.js" type="text/javascript" charset="utf-8"></script>
-		
 		<title>Lab Results Portal</title>
     </head>
 
@@ -48,8 +44,8 @@ Version	Date			Description
 		<div data-role="page" data-title="NHLS Lab Results" id="home"  data-theme="a">
 			<img src="img/header.png" width="100%" alt="">
 			<div class="ui-content" role="main">	
-				<a id='buttondefault' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview</a>
-				<a id='buttonlogon' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview Logon</a>
+				<a id='buttonDefault' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview</a>
+				<a id='buttonLogon' class="ui-btn ui-corner-all" data-transition="flip" href="#">TrakCare Lab Webview Logon</a>
 				<a class="ui-btn ui-corner-all" data-transition="flip" href="http://www.nhls.ac.za/">Our web site</a>
 				<a class="ui-btn ui-corner-all" data-transition="flip" href="http://www.labtestsonline.org.au/">Lab Tests Online AU</a>
 			</div><!-- /content -->
@@ -70,7 +66,7 @@ Version	Date			Description
 			</div><!-- /header -->
 			<div class="ui-content" role="main">
 
-				<ul id="appVersion" data-role="listview" data-inset="true">
+				<ul id="ulAppVersion" data-role="listview" data-inset="true">
 				</ul>
 
 				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
@@ -81,10 +77,10 @@ Version	Date			Description
 				
 				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
 					<h4>Terms and Conditions</h4>
-					<a id="buttontandc" class="ui-btn ui-corner-all" data-transition="flip" href="#">Terms and Conditions</a>
+					<a id="buttonTandC" class="ui-btn ui-corner-all" data-transition="flip" href="#">Terms and Conditions</a>
 					<div class="ui-checkbox">
-					    <label for="checkboxtandc" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">I agree to the terms and conditions above.</label>
-					    <input name="checkboxtandc" id="checkboxtandc" data-enhanced="true" type="checkbox">
+					    <label for="checkboxTandC" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">I agree to the terms and conditions above.</label>
+					    <input name="checkboxTandC" id="checkboxTandC" data-enhanced="true" type="checkbox">
 					</div>
 				</div>
 			</div><!-- /content --> 
@@ -110,8 +106,8 @@ Version	Date			Description
 					<form id="formRegistration" enctype="text/plain" action="mailto:">
     					<!--form -->       
 						<div style="padding:10px 20px;">
-							<label for="title" class="ui-hidden-accessible">Title</label>
-							<select name="title" id="title">
+							<label for="optionTitle" class="ui-hidden-accessible">Title</label>
+							<select name="optionTitle" id="optionTitle">
 								<option value="Dr">Dr</option>
 								<option value="Miss">Miss</option>
 								<option value="Mr">Mr</option>
@@ -120,20 +116,19 @@ Version	Date			Description
 								<option value="Prof.">Prof.</option>
 								<option value="Sr">Sr</option>
 							</select>
-							<label for="firstname" class="ui-hidden-accessible">First name:</label>
-							<input type="text" name="firstname" id="firstname" value="" placeholder="firstname" data-theme="a">
-							<label for="surname" class="ui-hidden-accessible">Surname:</label>
-							<input type="text" name="surname" id="surname" value="" placeholder="surname" data-theme="a">
-							<label for="gender" class="ui-hidden-accessible">Gender</label>
-							<select name="gender" id="gender">
+							<label for="textFirstname" class="ui-hidden-accessible">First name:</label>
+							<input type="text" name="textFirstname" id="textFirstname" value="" placeholder="Firstname" data-theme="a">
+							<label for="textSurname" class="ui-hidden-accessible">Surname:</label>
+							<input type="text" name="textSurname" id="textSurname" value="" placeholder="Surname" data-theme="a">
+							<label for="optionGender" class="ui-hidden-accessible">Gender</label>
+							<select name="optionGender" id="optionGender">
 								<option value="female">female</option>
 								<option value="male">male</option>
 							</select>
-							<label for="mobile" class="ui-hidden-accessible">Mobile:</label>
-							<input type="tel" name="mobile" id="mobile" value="" placeholder="mobile" data-theme="a">
-							<label for="gender" class="ui-hidden-accessible">Gender</label>
-							<label for="email" class="ui-hidden-accessible">Email:</label>
-							<input type="email" name="email" id="email" value="" placeholder="email" data-theme="a">
+							<label for="telMobile" class="ui-hidden-accessible">Mobile:</label>
+							<input type="tel" name="telMobile" id="telMobile" value="" placeholder="Mobile" data-theme="a">
+							<label for="emailEmail" class="ui-hidden-accessible">Email:</label>
+							<input type="email" name="emailEmail" id="emailEmail" value="" placeholder="Email" data-theme="a">
 							<button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left">Register</button>
 						</div>
 					</form>
@@ -142,8 +137,8 @@ Version	Date			Description
 				<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
 					<h4>My details</h4>
 					<div class="ui-field-contain">
-						<label for="username" >Username:</label>
-						<input type="text" name="username" id="username" value="" placeholder="username" data-theme="a">
+						<label for="textUsername" >Username:</label>
+						<input type="text" name="textUsername" id="textUsername" value="" placeholder="Username" data-theme="a">
 					</div>
 				</div><!-- /collapsible -->
 			</div><!-- /content -->
@@ -164,14 +159,12 @@ Version	Date			Description
 			 the phonegap.js reference here without a physical file in place, causes an "Cannot Open Page" error dialog
 			 with the following description "Safari cannot open the page because the address is invalid." and also
 			 causes the wrv logon link to fail silently - weird! -->
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-		<!-- MRP stuff -->
+        <script src="phonegap.js" ></script>
+		<script src="lib/jquery-1.11.0.js" ></script>
+		<script src="lib/jquery.mobile-1.4.2.js" ></script>
+		<script src="lib/fastclick.js" ></script>
+		<!-- <script src="js/jqm.config.js" ></script> -->
 		<script src="js/mrp.script.js"></script>
-
 		
     </body>
 </html>
