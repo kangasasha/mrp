@@ -4,6 +4,7 @@ Version	Date			Description
 0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
 0.5.0   26 Mar 2014     Major change to mrp.script.js and addition of fastclick.js
 0.5.1   28 Mar 2014     Move jQuery script tags back to head to eliminate legacy tag rendering
+0.5.2   28 Mar 2014     Add Phonegap deviceready event handler
 ***************/
 var app = {
 
@@ -41,7 +42,7 @@ var app = {
 
     buildDeviceProperties: function () {
 	    var html = "";
-	    //alert(window.device);
+	    alert(window.device);
 	    if (window.device) {
   	  	    html += "<li>" + 'Device Name: ' + device.name + "</li>";
   	  	    html += "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
@@ -55,6 +56,12 @@ var app = {
 
     registerEvents: function() {
 		var appThis = this;
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		function onDeviceReady() {
+			this.buildDeviceProperties();
+		    //console.log(device.cordova);
+		}
 		
 		$('#buttonLogon').on( "click", function( event ) {
 			event.preventDefault();
@@ -109,7 +116,7 @@ var app = {
 		//var self = this;
   		this.initFromStorage();
 
-		this.version = "0.5.1",
+		this.version = "0.5.2",
 		this.urlWRV = "https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
 		this.urlDefault = this.urlWRV + "default.htm";
 		this.urlLogon = this.urlWRV + "csp/logon.csp?LANGID=1";
@@ -122,7 +129,6 @@ var app = {
 		$('#buttonTandC').prop('href',encodeURI(this.urlTandC));
 	
 		this.buildAppVersion();
-		this.buildDeviceProperties();
 
         this.registerEvents();
 	}
