@@ -57,11 +57,11 @@ var app = {
     registerEvents: function() {
 		var appThis = this;
 		
-		document.addEventListener("deviceready", onDeviceReady, false);
-		function onDeviceReady() {
-			this.buildDeviceProperties();
+		//document.addEventListener("deviceready", onDeviceReady, false);
+		$(document).on("deviceready", function( event) { 
+			appThis.buildDeviceProperties();
 		    //console.log(device.cordova);
-		}
+		});
 		
 		$('#buttonLogon').on( "click", function( event ) {
 			event.preventDefault();
