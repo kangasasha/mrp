@@ -1,8 +1,10 @@
-/* Change history
-Version Date            Description
-0.4.1   24 Mar 2014     Corrected spelling in T&Cs link description.
+/***************
+Change history
+Version	Date			Description
+0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
 0.5.0   26 Mar 2014     Major change to mrp.script.js and addition of fastclick.js
-*/
+0.5.1   28 Mar 2014     Move jQuery script tags back to head to eliminate legacy tag rendering
+***************/
 var app = {
 
     showAlert: function (message, title) {
@@ -107,7 +109,7 @@ var app = {
 		//var self = this;
   		this.initFromStorage();
 
-		this.version = "0.5.0",
+		this.version = "0.5.1",
 		this.urlWRV = "https://trakcarelabwebview.nhls.ac.za/trakcarelab/";
 		this.urlDefault = this.urlWRV + "default.htm";
 		this.urlLogon = this.urlWRV + "csp/logon.csp?LANGID=1";

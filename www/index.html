@@ -22,6 +22,7 @@ Change history
 Version	Date			Description
 0.4.1	24 Mar 2014		Corrected spelling in T&Cs link description.
 0.5.0   26 Mar 2014     Major change to mrp.script.js
+0.5.1   28 Mar 2014     Move jQuery script tags back to head to eliminate legacy tag rendering
 **************
 -->
 <html>
@@ -36,6 +37,9 @@ Version	Date			Description
 		<link rel="stylesheet" href="css/themes/nhls2.min.css">
 		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<!-- Keep jQuery scripts in head to eliminate legacy tag rendering -->
+		<script src="lib/jquery-1.11.0.js" ></script>
+		<script src="lib/jquery.mobile-1.4.2.js" ></script>
 		
 		<title>Lab Results Portal</title>
     </head>
@@ -161,8 +165,6 @@ Version	Date			Description
 			 with the following description "Safari cannot open the page because the address is invalid." and also
 			 causes the wrv logon link to fail silently - weird! -->
         <script src="phonegap.js" ></script>
-		<script src="lib/jquery-1.11.0.js" ></script>
-		<script src="lib/jquery.mobile-1.4.2.js" ></script>
 		<script src="lib/fastclick.js" ></script>
 		<!-- <script src="js/jqm.config.js" ></script> -->
 		<script src="js/mrp.script.js"></script>
