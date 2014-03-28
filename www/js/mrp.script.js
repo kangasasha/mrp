@@ -42,7 +42,7 @@ var app = {
 
     buildDeviceProperties: function () {
 	    var html = "";
-	    alert(window.device);
+	    //alert(window.device);
 	    if (window.device) {
   	  	    html += "<li>" + 'Device Name: ' + device.name + "</li>";
   	  	    html += "<li>" + 'Device Cordova: ' + device.cordova + "</li>";
